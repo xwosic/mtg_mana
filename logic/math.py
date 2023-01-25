@@ -346,10 +346,10 @@ def prob_of_str_combination(combination: str, count_mapping: dict):
     all (40 5)
     returns (20 2) / (40 5)
     """
-    types = set(combination.split())
+    types = set(combination)
     for t in types:
         if t not in count_mapping:
-            raise ValueError('count_mapping not matching with combination')
+            raise ValueError(f'count_mapping {count_mapping} not matching with "{t}"')
     
     newtons = [
         newtons_symbol(count_mapping[t], combination.count(t))
@@ -364,7 +364,6 @@ def prob_of_str_combination(combination: str, count_mapping: dict):
         sum([count for count in count_mapping.values()]),
         len(combination)
     )
-
     return combinations / all_combinations
 
 
@@ -394,47 +393,47 @@ def get_mana_cost_combinations(mana_cost: dict, deck_info: dict, turn: int):
         return True
 
     all_combinations = list(itertools.combinations_with_replacement(letters, r=turn))
-    success_mana_combinations = filter(conditions, all_combinations)
-    return set(success_mana_combinations)
+    success_mana_combinations = set(filter(conditions, all_combinations))
+    return [''.join(comb) for comb in success_mana_combinations]
+
+mana_comb = get_mana_cost_combinations({'R': 2, "W": 1, "C": 1}, {}, 5)
+print('get_mana_cost_combinations', mana_comb)
+print('prob_of_str_combination', prob_of_str_combination(mana_comb[0], {'R': 10, 'W': 10, "C": 20}))
+
+# deck = {
+#     'cards_cmc': {
+#         1: 4,
+#         2: 11,
+#         3: 15,
+#         4: 3,
+#         5: 3,
+#         6: 3,
+#         7: 10,
+#         8: 6,
+#         9: 1,
+#         10: 1,
+#         11: 1,
+#         12: 1,
+#         15: 1
+#     },
+#     'lands': {
+#         'B': 5, 
+#         'C': 4, 
+#         'G': 21, 
+#         'R': 19, 
+#         'U': 5, 
+#         'W': 17
+#     },
+#     'total_lands': 40,
+#     'total_number': 100
+# }
+
+# for turn, num in deck['cards_cmc'].items():
+#     print(turn, 'probability', probability_from_combinations(
+#         deck['total_number'],
+#         turn,
+#         deck['total_lands'],
+#         num) * 100, '%')
 
 
-print('get_mana_cost_combinations', list(get_mana_cost_combinations({'R': 2, "W": 1, "C": 1}, {}, 5)))
-               
-
-deck = {
-    'cards_cmc': {
-        1: 4,
-        2: 11,
-        3: 15,
-        4: 3,
-        5: 3,
-        6: 3,
-        7: 10,
-        8: 6,
-        9: 1,
-        10: 1,
-        11: 1,
-        12: 1,
-        15: 1
-    },
-    'lands': {
-        'B': 5, 
-        'C': 4, 
-        'G': 21, 
-        'R': 19, 
-        'U': 5, 
-        'W': 17
-    },
-    'total_lands': 40,
-    'total_number': 100
-}
-
-for turn, num in deck['cards_cmc'].items():
-    print(turn, 'probability', probability_from_combinations(
-        deck['total_number'],
-        turn,
-        deck['total_lands'],
-        num) * 100, '%')
-
-
-print('probability_for_playing_commander', probability_for_playing_commander(100, 4, 40))
+# print('probability_for_playing_commander', probability_for_playing_commander(100, 4, 40))
