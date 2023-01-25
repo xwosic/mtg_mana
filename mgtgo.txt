@@ -1,0 +1,94 @@
+1 Angel of Serenity
+1 Angel of the Ruins
+1 Arcane Signet
+1 Archaeomancer's Map
+1 Ashnod's Altar
+1 Atla Palani, Nest Tender
+1 Autochthon Wurm
+1 Barrage of Expendables
+1 Battlefield Forge
+1 Battlemage's Bracers
+1 Beacon Hawk
+1 Bearer of the Heavens
+1 Blossoming Sands
+1 Boros Charm
+1 Breaker of Armies
+1 Cleansing Nova
+1 Colossal Majesty
+1 Command Tower
+1 Commander's Sphere
+1 Culling Dais
+1 Cultivate
+1 Dauntless Aven
+1 Dawnglade Regent
+1 Den of the Bugbear
+1 Drakuseth, Maw of Flames
+1 End-Raze Forerunners
+1 Engulfing Slagwurm
+1 Etali, Primal Storm
+1 Evolving Wilds
+1 Fanatical Devotion
+9 Forest
+1 Gargos, Vicious Watcher
+1 Gateway Plaza
+1 Giant Adephage
+1 Goblin Bombardment
+1 Harmonic Prodigy
+1 Harrow
+1 Hierophant Bio-Titan
+1 High Market
+1 Hornet Queen
+1 Impervious Greatwurm
+1 Instill Energy
+1 Kazandu Refuge
+1 Kodama's Reach
+1 Lightning Greaves
+1 Magmatic Force
+1 Mana Geode
+1 Maskwood Nexus
+1 Meteor Golem
+1 Mirror Entity
+6 Mountain
+1 Perilous Forays
+6 Plains
+1 Primeval Protector
+1 Rampant Growth
+1 Ravager Wurm
+1 Robaran Mercenaries
+1 Rugged Highlands
+1 Search for Tomorrow
+1 Seeker of Skybreak
+1 Shivan Hellkite
+1 Sol Ring
+1 Spawning Pit
+1 Stone Quarry
+1 Temple of Abandon
+1 Temple of Plenty
+1 Temple of Triumph
+1 Terramorphic Expanse
+1 Thermopod
+1 Thornbite Staff
+1 Thousand-Year Elixir
+1 Thriving Grove
+1 Timber Gorge
+1 Titanoth Rex
+1 Tocasia's Welcome
+1 Tranquil Expanse
+1 Ulamog's Crusher
+1 Unclaimed Territory
+1 Unknown Shores
+1 Witch's Oven
+1 Yidaro, Wandering Monster
+1 Zetalpa, Primal Dawn
+
+SIDEBOARD:
+1 Bookwurm
+1 Claws of Gix
+1 Cleansing Nova
+1 Eldrazi Devastator
+1 Fire Ants
+1 Monologue Tax
+1 Sarinth Greatwurm
+1 Silverclad Ferocidons
+1 Sun Titan
+1 Verdant Force

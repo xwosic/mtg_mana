@@ -1,0 +1,94 @@
+1 Angel of Serenity (khc) 18
+1 Angel of the Ruins (brc) 68
+1 Arcane Signet (40k) 228
+1 Archaeomancer's Map (plist) 890
+1 Ashnod's Altar (chr) 92
+1 Atla Palani, Nest Tender (dmc) 142
+1 Autochthon Wurm (rav) 191
+1 Barrage of Expendables (jmp) 292
+1 Battlefield Forge (bro) 257
+1 Battlemage's Bracers (c21) 375
+1 Beacon Hawk (dis) 3
+1 Bearer of the Heavens (jou) 89
+1 Blossoming Sands (mb1) 1659
+1 Boros Charm (c21) 210
+1 Breaker of Armies (mb1) 3
+1 Cleansing Nova (scd) 12
+1 Colossal Majesty (j22) 87
+1 Command Tower (cmr) 350
+1 Commander's Sphere (40k) 234
+1 Culling Dais (bbd) 233
+1 Cultivate (mb1) 1176
+1 Dauntless Aven (hou) 7
+1 Dawnglade Regent (cmr) 222
+1 Den of the Bugbear (afr) 254
+1 Drakuseth, Maw of Flames (m20) 136
+1 End-Raze Forerunners (gn3) 97
+1 Engulfing Slagwurm (som) 118
+1 Etali, Primal Storm (c20) 151
+1 Evolving Wilds (bro) 261
+1 Fanatical Devotion (nem) 8
+9 Forest (dmu) 275
+1 Gargos, Vicious Watcher (m20) 172
+1 Gateway Plaza (rna) 247
+1 Giant Adephage (ncc) 293
+1 Goblin Bombardment (ddn) 24
+1 Harmonic Prodigy (mh2) 132
+1 Harrow (dde) 57
+1 Hierophant Bio-Titan (40k) 92
+1 High Market (cma) 257
+1 Hornet Queen (scd) 190
+1 Impervious Greatwurm (2x2) 152
+1 Instill Energy (4ed) 252
+1 Kazandu Refuge (mb1) 1678
+1 Kodama's Reach (uma) 171
+1 Lightning Greaves (phed) 17
+1 Magmatic Force (scd) 150
+1 Mana Geode (war) 241
+1 Maskwood Nexus (clb) 865
+1 Meteor Golem (cmr) 325
+1 Mirror Entity (mb1) 179
+6 Mountain (eld) 262
+1 Perilous Forays (rav) 176
+6 Plains (dmu) 262
+1 Primeval Protector (nec) 124
+1 Rampant Growth (mb1) 1303
+1 Ravager Wurm (rna) 200
+1 Robaran Mercenaries (dmc) 22
+1 Rugged Highlands (m21) 249
+1 Search for Tomorrow (mb1) 1327
+1 Seeker of Skybreak (brb) 68
+1 Shivan Hellkite (10e) 231
+1 Sol Ring (scd) 276
+1 Spawning Pit (j22) 136
+1 Stone Quarry (cmr) 495
+1 Temple of Abandon (thb) 244
+1 Temple of Plenty (thb) 248
+1 Temple of Triumph (c21) 327
+1 Terramorphic Expanse (cmr) 357
+1 Thermopod (csp) 100
+1 Thornbite Staff (mor) 145
+1 Thousand-Year Elixir (cma) 236
+1 Thriving Grove (jmp) 34
+1 Timber Gorge (m19) 258
+1 Titanoth Rex (iko) 174
+1 Tocasia's Welcome (pbro) 30p
+1 Tranquil Expanse (ogw) 180
+1 Ulamog's Crusher (uma) 8
+1 Unclaimed Territory (voc) 188
+1 Unknown Shores (ogw) 181
+1 Witch's Oven (eld) 237
+1 Yidaro, Wandering Monster (j22) 625
+1 Zetalpa, Primal Dawn (gn2) 15
+
+SIDEBOARD:
+1 Bookwurm (stx) 123
+1 Claws of Gix (tsb) 107
+1 Cleansing Nova (khc) 20
+1 Eldrazi Devastator (bfz) 7
+1 Fire Ants (brb) 27
+1 Monologue Tax (c21) 19
+1 Sarinth Greatwurm (bro) 220
+1 Silverclad Ferocidons (rix) 115
+1 Sun Titan (khc) 34
+1 Verdant Force (cma) 161
