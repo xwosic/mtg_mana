@@ -7,7 +7,7 @@ from typing import List
 class Decklist:
     def __init__(self, mainboard: dict, commanders: list = None):
         self.deck = mainboard
-        self.commanders = commanders if commanders else []
+        self.commanders: List[Card] = commanders if commanders else []
         self.size = self.count_size()
         self.deck_info = {
             'total_number': None,

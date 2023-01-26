@@ -9,15 +9,16 @@ LAST_API_CALL = time.time()
 
 
 class Card:
-    def __init__(self, data: dict = None):
+    def __init__(self, data: dict = None, name: str = None):
         self.data = data if data else None
+        self._name = name
 
     def call_api(self):
-        response = requests.get(SCRY_FALL_URL + f'/cards/named?fuzzy={self.name}')
+        response = requests.get(SCRY_FALL_URL + f'/cards/named?fuzzy={self._name}')
         if response.status_code == 200:
             self.data = response.json()
         else:
-            raise RuntimeError(f'Failed to get card: {self.name}')
+            raise RuntimeError(f'Failed to get card: {self._name}')
 
     def __getitem__(self, key: str):
         return self.data[key]

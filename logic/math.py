@@ -298,6 +298,11 @@ def generate_land_other_combinations(turn):
 
 
 def prob_land_card_other(deck, turn, all_lands, lands, all_cards, cards, others):
+    """
+    Returns probability calculated from:
+
+    (all_lands lands)(all_cards cards)(other_cards other_in_hand)/(deck, hand)
+    """
     return (newtons_symbol(all_lands, lands)
             * newtons_symbol(all_cards, cards)
             * newtons_symbol(deck - all_lands - all_cards, others)
@@ -305,6 +310,11 @@ def prob_land_card_other(deck, turn, all_lands, lands, all_cards, cards, others)
 
 
 def probability_from_combinations(deck: int, turn: int, lands: int, cards: int):
+    """
+    Probability of event where:
+    * at least one card with this name in turn = card's cmc
+    * lands in number >= card's cmc
+    """
     combinations = generate_land_card_other_combinations(deck, turn, lands, cards)
     all_probs = 0
     for combination in combinations:
@@ -322,7 +332,11 @@ def probability_from_combinations(deck: int, turn: int, lands: int, cards: int):
     return all_probs
 
 
-def probability_for_playing_commander(deck, turn, lands):
+def probability_for_playing_commander_cmc(deck, turn, lands):
+    """
+    Probability of getting enough lands to play commander.
+    Color of lands is not taken into consideration here.
+    """
     hand = turn + 7
     result = 0.0
     for combination in generate_land_other_combinations(turn):
@@ -339,14 +353,15 @@ def count_other_lands(deck_info: dict):
 
 def probability_of_getting_right_lands(mana_cost: dict, deck_info: dict):
     """
-    {'B': 5, 'C': 4, 'G': 21, 'R': 19, 'U': 5, 'W': 17}
-
-    RRW3
-    R = 19
-    W = 17
-    all = 40
-    chanses are changing after each land draw
-    17/40 * 19/39 * 18/38
+    From mana cost takes only color symbols and ignore colorless.
+    Returns probability of getting X lands in right color.
+    Chanses are changing after each land draw.
+    
+    Example:
+    You've got 10 Mountains and 14 Forests in deck.
+    Cost of card is 4{R}{F}{F}
+    Probability of getting these colors is:
+    10/24 * 14/23 * 13/22
     """
 
     lands = copy.deepcopy(deck_info['lands'])
@@ -357,7 +372,6 @@ def probability_of_getting_right_lands(mana_cost: dict, deck_info: dict):
             continue  # skipping colorless
     
         for _ in range(mana_cost[color]):
-            print(lands[color], '/', total_num_of_lands)
             if not lands[color] or not total_num_of_lands:
                 prob *= 0
             prob *= lands[color] / total_num_of_lands
@@ -425,46 +439,6 @@ def get_mana_cost_combinations(mana_cost: dict, deck_info: dict, turn: int):
     return [''.join(comb) for comb in success_mana_combinations]
 
 
-mana_comb = get_mana_cost_combinations({'R': 2, "W": 1, "C": 1}, {}, 4)
-print('get_mana_cost_combinations', mana_comb)
-print('prob_of_str_combination', prob_of_str_combination(mana_comb[0], {'R': 10, 'W': 10, "C": 20}))
-
-deck = {
-    'cards_cmc': {
-        1: 4,
-        2: 11,
-        3: 15,
-        4: 3,
-        5: 3,
-        6: 3,
-        7: 10,
-        8: 6,
-        9: 1,
-        10: 1,
-        11: 1,
-        12: 1,
-        15: 1
-    },
-    'lands': {
-        'B': 5, 
-        'C': 4, 
-        'G': 21, 
-        'R': 19, 
-        'U': 5, 
-        'W': 17
-    },
-    'total_lands': 40,
-    'total_number': 100
-}
-
-# for turn, num in deck['cards_cmc'].items():
-#     print(turn, 'probability', probability_from_combinations(
-#         deck['total_number'],
-#         turn,
-#         deck['total_lands'],
-#         num) * 100, '%')
-
-
-# print('probability_for_playing_commander', probability_for_playing_commander(100, 4, 40))
-
-# print('probability_of_getting_right_lands', probability_of_getting_right_lands({'R': 2, "W": 1, "C": 1}, deck))
+# mana_comb = get_mana_cost_combinations({'R': 2, "W": 1, "C": 1}, {}, 4)
+# print('get_mana_cost_combinations', mana_comb)
+# print('prob_of_str_combination', prob_of_str_combination(mana_comb[0], {'R': 10, 'W': 10, "C": 20}))
