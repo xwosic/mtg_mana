@@ -1,5 +1,6 @@
 import json
 import re
+import itertools
 from scryfall_client.card import get_cards_collection, Card
 from typing import List
 
@@ -89,3 +90,12 @@ class Decklist:
                     self.deck_info['cards_cmc'][card.cmc] += count
                 else:
                     self.deck_info['cards_cmc'][card.cmc] = count
+
+    def sort_by_mana_cost(self):
+        groups = {}
+        for key, group in itertools.groupby(self.deck.values(), lambda card: json.dumps(card['info'].mana_cost)):
+            if key not in groups:
+                groups[key] = list(group)
+            else:
+                groups[key].extend(group)
+        return groups

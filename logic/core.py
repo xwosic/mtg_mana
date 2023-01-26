@@ -1,8 +1,11 @@
+import json
 from logic.math import probability_of_getting_right_lands, \
                        probability_from_combinations, \
-                       probability_for_playing_commander_cmc
+                       probability_for_playing_commander_cmc, \
+                       probability_of_getting_lands_in_colors
 from decklist import Decklist
 from scryfall_client.card import Card
+
 
 
 def prob_of_playing_this_card_on_curve(card: Card, deck: Decklist):
@@ -30,7 +33,8 @@ def prob_of_playing_this_card_on_curve(card: Card, deck: Decklist):
 
 def prob_of_playing_card_on_curve(turn: int, deck: Decklist):
     """
-    
+    Probability of drawing lands and at least one card with cmc
+    that can be played "on curve". Color is not taken into consideration.
     """
     getting_cmc_lands_and_cards = probability_from_combinations(
         deck=deck.deck_info['total_number'],
@@ -55,7 +59,23 @@ def probability_of_playing_commander_on_curve(deck: Decklist):
             commander.mana_cost,
             deck.deck_info
         )
-        print(getting_required_num_of_lands, right_colors)
         results[commander.name] = getting_required_num_of_lands * right_colors
 
     return results
+
+
+def probability_for_mana_costs(deck: Decklist):
+    """
+    Probability of having mana in good color and amount to play card with this cost
+    in turn = cmc.
+
+    * cmc <= lands <= drawn cards - 1 (enough lands to play card)
+    * lands in colors required in mana cost (min num of lands in correct colors)
+    """
+    result = {}
+    mana_costs = deck.sort_by_mana_cost()
+    for mana_cost_json in mana_costs:
+        mana_cost = json.loads(mana_cost_json)
+        result[mana_cost_json] = probability_of_getting_lands_in_colors(mana_cost, deck.deck_info)
+    
+    return result

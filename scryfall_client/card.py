@@ -63,6 +63,12 @@ class Card:
                     cost["C"] = int(symbol)
         
         return cost
+    
+    @property
+    def mana_cost_str(self):
+        mana_symbols = re.findall(r'\{.\}', self.data['mana_cost'])
+        mana_symbols = [s.replace('{', '').replace('}', '') for s in mana_symbols]
+        return ''.join(mana_symbols)
 
     @property
     def colors(self):

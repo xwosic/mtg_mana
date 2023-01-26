@@ -178,47 +178,32 @@ def get_color_combinations(cmc: int, number_of_lands: int, colors: dict = None):
     return combinations
 
 
-colors = {
-    'red': {
-        'required': 2,
-        'color_lands': 10
-    },
-    'green': {
-        'required': 1,
-        'color_lands': 20
-    }
-}
-
-# print('get_color_combinations', get_color_combinations(5, 40, colors=colors))
-# print('get_color_combinations', get_color_combinations(5, 40))
-
-
-def prob_of_playing_color_card_in_turn(deck: int, color_cards_number: int, color_lands_number: int, lands_number: int,
-                                       card_cmc: int, card_color_requirement: int, number_of_draws: int):
-    """
-    prob = color_cards_combination * color_lands_combination * lands_combination * other_cards_combination / all_com
-    """
-    color_cards_combination = newtons_symbol(color_cards_number, 1)  # >= min required
-    color_lands_combination = get_color_combinations(
-        card_cmc,
-        lands_number,
-        colors={
-            'red': {
-                'required': card_color_requirement,
-                'color_lands': color_lands_number
-            }
-        }
-    )  # >= min required
-    # lands_combination = newtons_symbol(lands_number - color_lands_number, card_cmc - card_color_requirement)
-    other_cards_combination = newtons_symbol(deck - lands_number - 1, number_of_draws - 1 - card_cmc)
-    all_combinations = newtons_symbol(deck, number_of_draws)
-    return (
-        color_cards_combination
-        * color_lands_combination
-        # * lands_combination
-        * other_cards_combination
-        / all_combinations
-    )
+# def prob_of_playing_color_card_in_turn(deck: int, color_cards_number: int, color_lands_number: int, lands_number: int,
+#                                        card_cmc: int, card_color_requirement: int, number_of_draws: int):
+#     """
+#     prob = color_cards_combination * color_lands_combination * lands_combination * other_cards_combination / all_com
+#     """
+#     color_cards_combination = newtons_symbol(color_cards_number, 1)  # >= min required
+#     color_lands_combination = get_color_combinations(
+#         card_cmc,
+#         lands_number,
+#         colors={
+#             'red': {
+#                 'required': card_color_requirement,
+#                 'color_lands': color_lands_number
+#             }
+#         }
+#     )  # >= min required
+#     # lands_combination = newtons_symbol(lands_number - color_lands_number, card_cmc - card_color_requirement)
+#     other_cards_combination = newtons_symbol(deck - lands_number - 1, number_of_draws - 1 - card_cmc)
+#     all_combinations = newtons_symbol(deck, number_of_draws)
+#     return (
+#         color_cards_combination
+#         * color_lands_combination
+#         # * lands_combination
+#         * other_cards_combination
+#         / all_combinations
+#     )
 
 
 def prob_of_getting_x_or_more_cards_in_turn(deck: int, turn: int, num_of_cards: int, x: int):
@@ -347,10 +332,6 @@ def probability_for_playing_commander_cmc(deck, turn, lands):
     return result
 
 
-def count_other_lands(deck_info: dict):
-    lands = deck_info['lands']
-
-
 def probability_of_getting_right_lands(mana_cost: dict, deck_info: dict):
     """
     From mana cost takes only color symbols and ignore colorless.
@@ -439,6 +420,29 @@ def get_mana_cost_combinations(mana_cost: dict, deck_info: dict, turn: int):
     return [''.join(comb) for comb in success_mana_combinations]
 
 
-# mana_comb = get_mana_cost_combinations({'R': 2, "W": 1, "C": 1}, {}, 4)
-# print('get_mana_cost_combinations', mana_comb)
-# print('prob_of_str_combination', prob_of_str_combination(mana_comb[0], {'R': 10, 'W': 10, "C": 20}))
+def probability_of_getting_lands_in_colors(mana_cost: dict, deck_info: dict):
+    """
+    Probability of event:
+    * cmc <= lands <= hand - 1
+    * lands in colors required in mana cost
+    """
+    cards_cmc = sum([c for c in mana_cost.values()])
+    hand = cards_cmc + 7
+    lands_greater_of_equal_to_turn = prob_of_getting_cards_in_range(
+        deck_info['total_number'],
+        cards_cmc,
+        deck_info['total_lands'],
+        min_range=cards_cmc,
+        max_range=hand - 1
+    )
+    lands_in_good_colors_probability = probability_of_getting_right_lands(
+        mana_cost=mana_cost,
+        deck_info=deck_info
+    )
+    return lands_greater_of_equal_to_turn * lands_in_good_colors_probability
+
+
+mana_comb = get_mana_cost_combinations({'R': 2, "W": 1, "C": 1}, {}, 4)
+print('get_mana_cost_combinations', mana_comb)
+print('prob_of_str_combination', prob_of_str_combination(mana_comb[0], {'R': 10, 'W': 10, "C": 20}))
+
