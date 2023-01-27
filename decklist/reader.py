@@ -30,7 +30,7 @@ class DecklistReader:
                 return dest
 
     def validate(self, line: str):
-        return re.match(r'\d .*', line)
+        return re.match(r'\d+ .*', line)
 
     def parse_name_and_count_from_line(self, line: str) -> tuple:
         count, *name = line.split(' ')

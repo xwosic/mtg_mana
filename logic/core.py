@@ -1,4 +1,5 @@
 import json
+import matplotlib.pyplot as plt
 from logic.math import probability_of_getting_right_lands, \
                        probability_from_combinations, \
                        probability_for_playing_commander_cmc, \
@@ -64,7 +65,7 @@ def probability_of_playing_commander_on_curve(deck: Decklist):
     return results
 
 
-def probability_for_mana_costs(deck: Decklist):
+def probability_for_mana_costs(deck: Decklist, show_plot=False):
     """
     Probability of having mana in good color and amount to play card with this cost
     in turn = cmc.
@@ -78,4 +79,25 @@ def probability_for_mana_costs(deck: Decklist):
         mana_cost = json.loads(mana_cost_json)
         result[mana_cost_json] = probability_of_getting_lands_in_colors(mana_cost, deck.deck_info)
     
+    result = dict(sorted(result.items()))
+
+    if show_plot:
+        x = []
+        y = []
+        for k, v in result.items():
+            t = ''
+            for s, n in json.loads(k).items():
+                if s == "C":
+                    t += str(n)
+                else:
+                    t += s * n 
+            x.append(t)
+            y.append(v)
+        plt.bar(x, y)
+        plt.title('Probability of having mana to pay the mana cost')
+        plt.xlabel('Mana cost')
+        plt.ylabel('Probability')
+        plt.xticks(rotation=90)
+        plt.show()
+
     return result
