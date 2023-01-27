@@ -89,18 +89,17 @@ def probability_for_mana_costs(deck: Decklist, show_plot=False):
     result = dict(sorted(result.items()))
 
     if show_plot:
-        x = []
-        y = []
+        to_sort = {}
         for k, v in result.items():
             t = ''
             for s, n in json.loads(k).items():
                 if s == "C":
                     t += str(n)
                 else:
-                    t += s * n 
-            x.append(t)
-            y.append(v)
-        plt.bar(x, y)
+                    t += s * n
+            to_sort[t] = v
+
+        plt.bar(to_sort.keys(), to_sort.values())
         plt.title('Probability of having mana to pay the mana cost')
         plt.xlabel('Mana cost')
         plt.ylabel('Probability')

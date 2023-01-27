@@ -19,16 +19,10 @@ decklist.load_card_info_from_file('./eggplant.json')
 # commander.call_api()
 # decklist.commanders = [commander]
 
-pprint(decklist.deck)
+# pprint(decklist.deck)
 decklist.fill_decklist_info()
 
-pprint(decklist.deck_info)
-
-# card_name = 'Sol Ring'
-# print('prob_of_playing_this_card_on_curve', card_name, prob_of_playing_this_card_on_curve(
-#     card=decklist.deck[card_name]['info'],
-#     deck=decklist
-# ))
+# pprint(decklist.deck_info)
 
 prob_of_playing_card_on_curve(deck=decklist, show_plot=True)
 

@@ -1,6 +1,6 @@
 """
 probability of playing card in turn:
-prob = prob_of_getting_lands_cmc * prob_of_getting_land_colors
+prob = prob_of_getting_lands_cmc * prob_of_getting_land_colors * prob_of_getting_card
 """
 import copy
 import math
@@ -8,7 +8,6 @@ import itertools
 
 
 def newtons_symbol(n: int, k: int):
-    # return len(list(itertools.permutations(range(n), r=k)))
     return math.factorial(n) / math.factorial(k) / math.factorial(n - k)
 
 
@@ -370,6 +369,7 @@ def prob_of_str_combination(combination: str, count_mapping: dict):
     returns (20 2) / (40 5)
     """
     types = set(combination)
+    print(types)
     for t in types:
         if t not in count_mapping:
             raise ValueError(f'count_mapping {count_mapping} not matching with "{t}"')
@@ -378,7 +378,6 @@ def prob_of_str_combination(combination: str, count_mapping: dict):
         newtons_symbol(count_mapping[t], combination.count(t))
         for t in types
     ]
-
     combinations = 1
     for n in newtons:
         combinations *= n
@@ -442,7 +441,45 @@ def probability_of_getting_lands_in_colors(mana_cost: dict, deck_info: dict):
     return lands_greater_of_equal_to_turn * lands_in_good_colors_probability
 
 
-mana_comb = get_mana_cost_combinations({'R': 2, "W": 1, "C": 1}, {}, 4)
-print('get_mana_cost_combinations', mana_comb)
-print('prob_of_str_combination', prob_of_str_combination(mana_comb[0], {'R': 10, 'W': 10, "C": 20}))
+# mana_comb = get_mana_cost_combinations({'R': 2, "W": 1, "C": 1}, {}, 4)
+# print('get_mana_cost_combinations', mana_comb)
+# print('prob_of_str_combination', prob_of_str_combination(mana_comb[0], {'R': 10, 'W': 10, "C": 20}))
 
+
+def prob_of_drawing_combination(combination: str | list, count_mapping: dict):
+    """
+    ## iterating probability
+    ```
+    lands = "rrrwwbb"
+    cards = 112
+    ```
+    ### prob of "rwb12r"
+    ```
+    3/10 * 2/9 * 2/8 * 2/7 * 1/6 * 2/5 = 0.00031746031746031746
+    ```
+    """
+    types = set(combination)
+    for t in types:
+        if t not in count_mapping:
+            raise ValueError(f'count_mapping {count_mapping} not matching with "{t}"')
+    
+    mapping = copy.deepcopy(count_mapping)
+    total_number = sum([c for c in mapping.values()])
+    prob = 1.0
+    for element_type in combination:
+        # print(mapping[element_type], '/', total_number)
+        if not mapping[element_type] or not total_number:
+            prob = 0
+        prob *= mapping[element_type] / total_number
+        mapping[element_type] -= 1
+        total_number -= 1
+    
+    return prob
+
+print('iter', prob_of_drawing_combination('rwb12r', {
+    'r': 3,
+    'w': 2,
+    'b': 2,
+    '1': 2,
+    '2': 1
+}))
