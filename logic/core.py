@@ -8,7 +8,6 @@ from decklist import Decklist
 from scryfall_client.card import Card
 
 
-
 def prob_of_playing_this_card_on_curve(card: Card, deck: Decklist):
     """
     Probability of event where:
@@ -32,18 +31,26 @@ def prob_of_playing_this_card_on_curve(card: Card, deck: Decklist):
     return getting_cmc_lands_and_card * lands_in_good_colors_probability
 
 
-def prob_of_playing_card_on_curve(turn: int, deck: Decklist):
+def prob_of_playing_card_on_curve(deck: Decklist, show_plot=False):
     """
     Probability of drawing lands and at least one card with cmc
     that can be played "on curve". Color is not taken into consideration.
     """
-    getting_cmc_lands_and_cards = probability_from_combinations(
-        deck=deck.deck_info['total_number'],
-        turn=turn,
-        lands=deck.deck_info['total_lands'],
-        cards=deck.deck_info['cards_cmc'][turn]
-    )
-    return getting_cmc_lands_and_cards
+    results = {}
+    for cmc, count_of_cards in deck.deck_info['cards_cmc'].items():
+            results[cmc] = probability_from_combinations(
+                deck=deck.deck_info['total_number'],
+                turn=cmc,
+                lands=deck.deck_info['total_lands'],
+                cards=count_of_cards
+            )
+
+    if show_plot:
+        plt.bar(results.keys(), results.values())
+        plt.title('Prob of playing card on curve')
+        plt.show()
+
+    return results
 
 
 def probability_of_playing_commander_on_curve(deck: Decklist):

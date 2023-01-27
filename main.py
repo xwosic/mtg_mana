@@ -30,14 +30,10 @@ pprint(decklist.deck_info)
 #     deck=decklist
 # ))
 
-print('prob_of_playing_card_on_curve', prob_of_playing_card_on_curve(
-    turn=2,
-    deck=decklist
-))
+prob_of_playing_card_on_curve(deck=decklist, show_plot=True)
 
 print('probability_of_playing_commander_on_curve', probability_of_playing_commander_on_curve(
     deck=decklist
 ))
 
-pprint(decklist.sort_by_mana_cost())
 mana_costs = probability_for_mana_costs(decklist, True)
