@@ -467,7 +467,6 @@ def prob_of_drawing_combination(combination: str | list, count_mapping: dict):
     total_number = sum([c for c in mapping.values()])
     prob = 1.0
     for element_type in combination:
-        # print(mapping[element_type], '/', total_number)
         if not mapping[element_type] or not total_number:
             prob = 0
         prob *= mapping[element_type] / total_number
